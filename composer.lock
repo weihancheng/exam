@@ -4,8 +4,75 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff42f14014e8629ae9e87a3e692182c0",
+    "content-hash": "32ee5821ba279fc700afc216bdff4056",
     "packages": [
+        {
+            "name": "archerzdip/laravel-identity",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArcherZdip/laravel-identity.git",
+                "reference": "2207ed30ab5aca8e100e2ee4f80499ac913608d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArcherZdip/laravel-identity/zipball/2207ed30ab5aca8e100e2ee4f80499ac913608d5",
+                "reference": "2207ed30ab5aca8e100e2ee4f80499ac913608d5",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "illuminate/console": ">=5.0.0",
+                "illuminate/support": ">=5.0.0",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ArcherZdip\\Identity\\IdentityServiceProvider"
+                    ],
+                    "aliases": {
+                        "Identity": "ArcherZdip\\Identity\\IdentityFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "ArcherZdip\\Identity\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "archerZdip",
+                    "email": "646121218@qq.com"
+                }
+            ],
+            "description": "Chinese ID number generate and verity.",
+            "keywords": [
+                "chinese id number",
+                "identity",
+                "identity card",
+                "laravel",
+                "verity"
+            ],
+            "time": "2019-05-27T06:12:47+00:00"
+        },
         {
             "name": "caouecs/laravel-lang",
             "version": "4.0.8",
@@ -6772,7 +6839,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "archerzdip/laravel-identity": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
