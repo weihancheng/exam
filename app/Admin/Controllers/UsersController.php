@@ -2,7 +2,6 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\User\AdminVerified;
 use App\Models\User;
 use Carbon\Carbon;
 use Encore\Admin\Controllers\AdminController;
@@ -45,9 +44,9 @@ class UsersController extends AdminController
             $filter->scope('admin_verified_at', '未验证用户')->whereNull('admin_verified_at');
         });
 
-        $grid->batchActions(function ($batch) {
-            $batch->add(new AdminVerified());
-        });
+//        $grid->batchActions(function ($batch) {
+//            $batch->add(new AdminVerified());
+//        });
         return $grid;
     }
 
