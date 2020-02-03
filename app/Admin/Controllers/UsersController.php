@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\User\ImportUser;
 use App\Models\User;
 use Carbon\Carbon;
 use Encore\Admin\Controllers\AdminController;
@@ -30,9 +31,9 @@ class UsersController extends AdminController
         $grid->model()->orderBy('id', 'desc');
 
         $grid->id('ID')->sortable();
-        $grid->username('用户名');
-        $grid->mobile('电话');
-        $grid->id_card('身份证');
+        $grid->username('用户名')->editable();
+        $grid->mobile('电话')->editable();
+        $grid->id_card('身份证')->editable();
         // 管理员是否验证
         $grid->admin_verified_at('已验证用户')->display(function ($value) {
             return $value ? '是' : '否';
@@ -44,9 +45,10 @@ class UsersController extends AdminController
             $filter->scope('admin_verified_at', '未验证用户')->whereNull('admin_verified_at');
         });
 
-//        $grid->batchActions(function ($batch) {
-//            $batch->add(new AdminVerified());
-//        });
+        $grid->tools(function ($tools) {
+            $tools->append(new ImportUser());
+        });
+
         return $grid;
     }
 

@@ -16,5 +16,6 @@ Route::group([
     $router->get('users/create', 'UsersController@create');
     $router->get('users/{user}', 'UsersController@show');
     $router->post('users', 'UsersController@store');
+    $router->put('users/{user}', 'UsersController@edit');
 
 });
