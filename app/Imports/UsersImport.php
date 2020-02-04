@@ -13,13 +13,15 @@ class UsersImport implements ToModel, WithHeadingRow
 
     public function model(array $row)
     {
-        return new User([
+        $user = new User([
             'username' => $row['姓名'],
             'mobile' => $row['电话'],
             'id_card' => $row['身份证'],
-            'password' => bcrypt($row['密码']),
-            'admin_verified_at' => Carbon::now(),
-            'remember_token' => Str::random(10)
+            'password' => bcrypt($row['密码'])
         ]);
+
+        $user->admin_verified_at = Carbon::now();
+        $user->remember_token = Str::random(10);
+        return $user;
     }
 }

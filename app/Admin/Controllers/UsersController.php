@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\User\BatchAdminVerified;
 use App\Admin\Actions\User\Import;
 use App\Models\User;
 use Carbon\Carbon;
@@ -41,6 +42,11 @@ class UsersController extends AdminController
         // 筛选
         $grid->filter(function($filter){
             $filter->scope('admin_verified_at', '未验证用户')->whereNull('admin_verified_at');
+        });
+
+        // 批量操作
+        $grid->batchActions(function ($batch) {
+            $batch->add(new BatchAdminVerified());
         });
 
         $grid->tools(function ($tools) {
