@@ -2,16 +2,19 @@
 
 namespace App\Admin\Actions\User;
 
+use App\Imports\UsersImport;
 use Encore\Admin\Actions\Action;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
-class ImportUser extends Action
+class Import extends Action
 {
-    protected $selector = '.import-user';
+    protected $selector = '.import';
 
     public function handle(Request $request)
     {
-        $request->file('file')->store('excel');
+        // 导入excel
+        Excel::import(new UsersImport(), $request->file('file'));
         return $this->response()->success('导入用户成功!')->refresh();
     }
 
@@ -23,7 +26,7 @@ class ImportUser extends Action
     public function html()
     {
         return <<<HTML
-        <a class="btn btn-sm btn-default import-user"><i class="fa fa-upload"></i> 导入用户</a>
+        <a class="btn btn-sm btn-default import"><i class="fa fa-upload"></i> 导入用户</a>
 HTML;
     }
 }

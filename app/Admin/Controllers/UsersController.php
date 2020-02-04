@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\User\ImportUser;
+use App\Admin\Actions\User\Import;
 use App\Models\User;
 use Carbon\Carbon;
 use Encore\Admin\Controllers\AdminController;
@@ -28,8 +28,6 @@ class UsersController extends AdminController
     {
         $grid = new Grid(new User());
 
-        $grid->model()->orderBy('id', 'desc');
-
         $grid->id('ID')->sortable();
         $grid->username('用户名')->editable();
         $grid->mobile('电话')->editable();
@@ -46,7 +44,7 @@ class UsersController extends AdminController
         });
 
         $grid->tools(function ($tools) {
-            $tools->append(new ImportUser());
+            $tools->append(new Import());
         });
 
         return $grid;
