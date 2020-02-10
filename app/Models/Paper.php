@@ -34,4 +34,9 @@ class Paper extends Model
     {
         return $this->belongsToMany(Question::class)->withTimestamps();
     }
+
+    public function examRooms()
+    {
+        return $this->hasMany(ExamRoom::class);
+    }
 }
