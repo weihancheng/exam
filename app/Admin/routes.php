@@ -14,5 +14,6 @@ Route::group([
     $router->name('admin')->resource('users', 'UsersController');
     $router->name('admin')->resource('posts', 'PostsController');
     $router->name('admin')->resource('questions', 'QuestionsController');
+    $router->name('admin')->resource('papers', PapersController::class);
 
 });

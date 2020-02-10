@@ -57,6 +57,7 @@ class PostsController extends AdminController
         $form->text('name', '分类名称')->rules('required|between:2,20');
         $form->number('sort', '排序')->default(100)->rules('digits_between:1,4');
 
+
         return $form;
     }
 }

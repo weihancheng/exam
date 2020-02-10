@@ -22,6 +22,14 @@ class Question extends Model
         'answer' => 'array'  // answer 是一个数组
     ];
 
+    protected $fillable = [
+        'question_status',
+        'title',
+        'memo',
+        'answer'
+    ];
+
+
     public function items()
     {
         return $this->hasMany(Item::class);
@@ -30,5 +38,10 @@ class Question extends Model
     public function post()
     {
         return $this->belongsTo(Post::class);
+    }
+
+    public function paper()
+    {
+        return $this->belongsToMany(Paper::class)->withTimestamps();
     }
 }

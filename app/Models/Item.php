@@ -14,7 +14,7 @@ class Item extends Model
         self::NOT_ANSWER => "否"
     ];
 
-    protected $fillable = ['content', 'sort', 'is_answer'];
+    protected $fillable = ['content', 'sort', 'is_answer', 'memo', 'question_id'];
 
     public function question()
     {
