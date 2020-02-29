@@ -30,4 +30,22 @@ class User extends Authenticatable
     protected $casts = [
         'admin_verified_at' => 'datetime',
     ];
+
+    // 批改者模型关联考场
+    public function correctionExamRoom()
+    {
+        return $this->hasMany(ExamRoom::class);
+    }
+
+    // 考生模型关联考场
+    public function studentsExamRoom()
+    {
+        return $this->belongsToMany(ExamRoom::class)->withTimestamps();
+    }
+
+    // 关联成绩表
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
 }

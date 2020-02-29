@@ -12,4 +12,17 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+   .sass('resources/sass/app.scss', 'public/css')
+   .version();
+
+mix.copyDirectory('resources/assets', 'public/assets');
+
+// 减少cpu占用
+if(Mix.isWatching()){
+    mix.webpackConfig({
+        watchOptions:{
+            ignored : /node_modules/,
+            //poll : 1000
+        },
+    })
+}

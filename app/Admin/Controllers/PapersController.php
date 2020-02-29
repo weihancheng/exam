@@ -3,11 +3,14 @@
 namespace App\Admin\Controllers;
 
 use App\Admin\Actions\Paper\Import;
+use App\Admin\Forms\PaperAddQuestion;
 use App\Models\Paper;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
+use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 
 class PapersController extends AdminController
 {
@@ -84,4 +87,36 @@ class PapersController extends AdminController
         return $form;
     }
 
+    // 试卷详情
+    public function show($id, Content $content)
+    {
+        return $content->header('试卷')
+            ->description('显示')
+            ->body(view('admin.papers.show', ['paper' => Paper::query()->find($id)]));
+    }
+
+    // 从试卷中剔除某道题
+    public function deleteQuestion(Paper $paper, Request $request)
+    {
+        $data = $request->only('question_id');
+        $paper->questions()->detach($data['question_id']);
+        // 修改试卷总数
+        $paper->total = $paper->questions()->get()->count();
+        $paper->save();
+//        admin_toastr('删除试题成功[注:试题只是从当前试卷中剔除]');
+//        return back();
+    }
+
+    // 新增题目到试卷中
+    public function createQuestion(Paper $paper, Content $content)
+    {
+        // 使用了laravel-admin的数据表单
+        $paperAddQuestion = new PaperAddQuestion();
+        // 把试卷信息传递到数据表单中
+        $paperAddQuestion->setPaper($paper);
+
+        return $content->header($paper->title)
+            ->description('给试卷添加新试题')
+            ->body($paperAddQuestion);
+    }
 }

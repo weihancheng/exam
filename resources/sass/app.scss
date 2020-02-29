@@ -1,1 +1,91 @@
-//
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// 用户头像
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: #0d6aad;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+// 考场logo
+.exam-room-avatar {
+    width: 60px;
+    height: 40px;
+    border-radius: 6px;
+    background-color: #0d6aad;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.exam_room-index-page {
+    a {
+        text-decoration: none
+    }
+}
+
+// 考试界面样式
+.paper-show-page, .exam_room-exam-page {
+    pre {
+        font-size: 100%!important;
+        font-family: "Nunito", sans-serif!important;
+    }
+    .question {
+        .panel-body {
+            ol {
+                li {
+                    margin-top: 20px;
+                    .form-check {
+                        margin: 10px 20px 0 0;
+                    }
+                    .answer {
+                        margin-top: 10px;
+                        textarea {
+                            height: 150px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .fixbar {    // 悬浮按钮
+        position: fixed;
+        right: 30px;
+        bottom: 40px;
+        z-index: 1;
+        display: block;
+        list-style-type: disc;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        padding-inline-start: 40px;
+        li {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            margin-bottom: 1px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 30px;
+            background-color: #9F9F9F;
+            color: #fff;
+            border-radius: 2px;
+            opacity: .95;
+            list-style-type: none;
+        }
+    }
+}
+

@@ -100,4 +100,5 @@ return [
 
     'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache'),
 
+    'paper_cache_time' => 604800   //试卷缓存试卷
 ];

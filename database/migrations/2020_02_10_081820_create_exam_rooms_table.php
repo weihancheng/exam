@@ -21,7 +21,8 @@ class CreateExamRoomsTable extends Migration
             $table->tinyInteger('top')->default(0);
             $table->tinyInteger('status')->default(0);
             $table->unsignedBigInteger('user_id')->nullable(); // 关联试卷表
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null'); // 批改者id
+            $table->text('students');
             $table->datetime('start_at'); // 考场开始时间
             $table->datetime('end_at');  // 考场结束时间
             $table->timestamps();

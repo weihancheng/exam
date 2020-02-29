@@ -29,6 +29,6 @@ class CreatePaperQuestionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paper_questions');
+        Schema::dropIfExists('paper_question');
     }
 }

@@ -15,9 +15,17 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+//        Registered::class => [
+//            SendEmailVerificationNotification::class,
+//        ],
+        // 考试开始
+        'App\Events\ExamStart' => [
+            'App\Listeners\GeneratingPaper', // 生成试卷
         ],
+        'App\Events\ExamEnd' => [
+            'App\Listeners\CorrectionPaper', // 批改试卷
+            'App\Listeners\NotExamUser', // 获取未参加考试的名单并处理
+        ]
     ];
 
     /**

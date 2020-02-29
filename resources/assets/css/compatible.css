@@ -1,0 +1,17 @@
+/* 兼容css文件 使fornum19和bootstrap样式不冲突 */
+
+.nav-tabs .nav-link {
+    border: unset!important;
+}
+
+.nav-link {
+    padding: unset!important;
+}
+
+.nav-tabs .nav-item {
+    margin-bottom: unset!important;
+}
+
+body {
+    font-size: unset!important;
+}

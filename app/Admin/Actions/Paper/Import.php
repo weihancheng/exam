@@ -19,17 +19,17 @@ class Import extends Action
         // 将excel数据转为数组数据
         $temp = Excel::toArray($papersImport, $request->file('file'));
         // 对paper数组数据进行处理
-        $paper = $papersImport->getPaper($temp[0]);
+        $paperContent = $papersImport->getPaper($temp[0]);
 
         // 将paper数据保存到数据库中
         $paper = Paper::create([
             'author' => $request->input('author'),
-            'total' => count($paper['content']),
+            'total' => count($paperContent['content']),
             'description' => $request->input('description'),
             'title' => $request->input('title'),
-            'type' => $paper['type']
+            'type' => $paperContent['type']
         ]);
-        $paper->questions()->sync($paper['content']);
+        $paper->questions()->sync($paperContent['content']);
 
         return $this->response()->success('导入试卷成功')->refresh();
     }
