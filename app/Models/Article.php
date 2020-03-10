@@ -13,4 +13,9 @@ class Article extends Model
         'sort'
     ];
 
+    public function article_dir()
+    {
+        return $this->hasOne(ArticleDir::class);
+    }
+
 }

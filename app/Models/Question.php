@@ -44,4 +44,10 @@ class Question extends Model
     {
         return $this->belongsToMany(Paper::class)->withTimestamps();
     }
+
+    // 模型关联用户回答
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\ExamEnd;
+use App\Models\Score;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -20,18 +21,26 @@ class NotExamUser
     }
 
     /**
-     * 遍历没有参加考试的用户, 生成他们的考试卡
+     * 遍历没有参加考试的用户, 生成对应的Score
      *
-     * @param  ExamEnd  $event
+     * @param ExamEnd $event
      * @return void
      */
     public function handle(ExamEnd $event)
     {
         $examRoom = $event->getExamRoom();
-        // 获取要参加考试的名单
-        $examinee = $examRoom->examinee();   // 理想考试名单
-        // 获取实际参加考试的名单
-        $actual_examinee = $examRoom->scores()->get()->pluck('id');
-        dd($actual_examinee);
+        // 获取没有参加考试的考生
+        $not_examinees = array_diff($examRoom->examinee()->get()->pluck('id')->toArray(),
+            array_unique($examRoom->scores()->get()->pluck('user_id')->toArray()));
+        foreach ($not_examinees as $examinee) {
+            $score = new Score([
+                'questions_mark' => 0,  // 选择题总分
+                'text_mark' => 0,  // 问答题总分
+                'type' => Score::SCORE_NOT_EXAM,   // 标记考试没有参加考试
+            ]);
+            $score->user_id = $examinee;  // 用户id
+            $score->exam_room_id = $examRoom->first()->id; // 考场id
+            $score->save();
+        }
     }
 }

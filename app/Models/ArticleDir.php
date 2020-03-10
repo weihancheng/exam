@@ -30,4 +30,18 @@ class ArticleDir extends Model
         'is_cover' => 'boolean'
     ];
 
+    // 是否为封面
+    const NOT_COVER = 0;
+    const IS_COVER = 1;
+
+    public static $coverMap = [
+        self::NOT_COVER => '不是封面',
+        self::IS_COVER => '封面'
+    ];
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
 }

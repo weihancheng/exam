@@ -1,10 +1,30 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+//@import url('https://fonts.googleapis.com/css?family=Nunito');
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.footer {
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here 在此处设置页脚的固定高度 */
+    heigth: 60px;
+    background-color: #ffffff;
+    border-top: 1px solid #e2e7ea;
+    .container {
+        padding-right: 15px;
+        padding-left: 15px;
+        p {
+            margin: 19px 0;
+            color: #182730;
+            a {
+                color: inherit;
+            }
+        }
+    }
+}
 
 // 用户头像
 .user-avatar {
@@ -36,8 +56,8 @@
     }
 }
 
-// 考试界面样式
-.paper-show-page, .exam_room-exam-page {
+// 考试界面样式&错题集界面样式
+.paper-show-page, .exam_room-exam-page, .score-show-error_collection-page {
     pre {
         font-size: 100%!important;
         font-family: "Nunito", sans-serif!important;
@@ -86,6 +106,110 @@
             opacity: .95;
             list-style-type: none;
         }
+    }
+}
+
+.score-show-error_collection-page {
+    .error-collection {
+        display: flex;
+        align-items: center;
+        padding: 5px 10px;
+        border-radius: 8px;
+        .error-collection-title {
+            margin-right: 20px;
+            height: 40px;
+            line-height: 40px;
+        }
+        .error-collection-content {
+            height: 40px;
+            line-height: 40px;
+            .form-check {
+                margin-top: 0px !important;
+            }
+        }
+    }
+    .error-collection-color-false {
+        background-color: #ffd2ad;
+    }
+    .error-collection-color-true {
+        background-color: #ddffb9;
+    }
+    .error-collection-color-memo {
+        background-color: #fffdba;
+    }
+    .error-collection-memo {
+        align-items: flex-start;
+        height: 120px !important;
+    }
+}
+
+// 文档界面样式
+.article_dir-index-page {
+    .tab-content {
+        margin-bottom: 20px!important;
+        .book {
+            .tt-item {
+                padding-top: 15px!important;
+                padding-bottom: 15px!important;
+                .innerwrapper {
+                    .cover{
+                        background-color: #fffacc;
+                        width: 100%;
+                        height: 250px;
+                        -webkit-box-shadow:5px 5px 5px #888888; /*老的For Chrome5+, Safari5+*/
+                        -moz-box-shadow: 5px 5px 5px #888888; /* 老的 firefox */
+                        box-shadow: 5px 5px 5px #888888;
+                        .cover-title {
+                            padding: 10px 10px 10px 10px;
+                        }
+                    }
+                }
+                .tt-item-header {
+                    margin-top: 10px;
+                    height: 40px;
+                    line-height: 40px;
+                    display: flex;
+                    padding-bottom: unset;
+                }
+            }
+        }
+        a {
+            text-decoration: none;
+        }
+        .book-pagination {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            height: 20px;
+            width: 100%;
+            position: relative;
+            div {
+                position: absolute;
+                right: 20px;
+            }
+        }
+    }
+}
+
+// 文档显示界面
+.article-show-page {
+    .layui-tree-icon {
+        height: 14px!important;
+        line-height: 11.5px!important;
+        width: 14px!important;
+        text-align: center!important;
+        border: 1px solid #c0c4cc!important;
+        left: 2px!important;
+        margin-bottom: 3px!important;
+    }
+    .demo-tree {
+        width: 230px;
+        height: 300px;
+    }
+    .layui-tree-entry {
+        height: 23px!important;
+    }
+    .tt-tab-wrapper {
+        padding-bottom: 40px;
     }
 }
 

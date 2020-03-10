@@ -1,56 +1,52 @@
 <div id="js-popup-settings" class="tt-popup-settings">
     <div class="tt-btn-col-close">
-        <a href="#">
+        <a href="#" style="display: flex; align-items: center">
 			<span class="tt-icon-title">
-				<svg>
-					<use xlink:href="#icon-settings_fill"></use>
-				</svg>
+				<span class="icon iconfont icon-icon-test16"></span>
 			</span>
             <span class="tt-icon-text">
 				设置
 			</span>
             <span class="tt-icon-close">
-				<svg>
-					<use xlink:href="#icon-cancel"></use>
-				</svg>
+				<span class="icon iconfont icon-icon-test44"></span>
 			</span>
         </a>
     </div>
-    <form class="form-default">
-        <div class="tt-form-upload">
-            <div class="row no-gutter">
-                <div class="col-auto">
-                    <div class="tt-icon">
-                        <div class="user-avatar">
-                            {{ mb_substr(Auth::user()->username, 0, 1) }}
-                        </div>
+    <div class="tt-form-upload">
+        <div class="row no-gutter">
+            <div class="col-auto">
+                <div class="tt-icon">
+                    <div class="user-avatar">
+                        {{ mb_substr(Auth::user()->username, 0, 1) }}
                     </div>
                 </div>
-                <div class="col-auto ml-auto">
-                    <a href="#" class="btn btn-primary">上传头像</a>
-                </div>
+            </div>
+            <div class="col-auto ml-auto">
+                <a href="#" class="btn btn-primary">上传头像</a>
             </div>
         </div>
+    </div>
+    <form action="{{ route('users.update.own', [ 'user' => auth()->user()->id ]) }}" method="post">
+        @csrf
+        @method('PUT')
         <div class="form-group">
             <label for="settingsUserName">用户名</label>
-            <input type="text" name="name" class="form-control" id="settingsUserName" placeholder="{{ Auth::user()->username }}">
+            <input type="text" name="username" class="form-control" placeholder="{{ Auth::user()->username }}"
+                   value="{{ Auth::user()->username }}">
         </div>
         <div class="form-group">
             <label for="settingsUserEmail">手机号</label>
-            <input type="text" name="name" class="form-control" id="settingsUserEmail" placeholder="{{ Auth::user()->mobile }}">
-        </div>
-        <div class="form-group">
-            <label for="settingsUserPassword">密码</label>
-            <input type="password" name="name" class="form-control" id="settingsUserPassword"
-                   placeholder="******">
+            <input type="text" name="mobile" class="form-control" placeholder="{{ Auth::user()->mobile }}"
+                   value="{{ Auth::user()->mobile }}">
         </div>
         <div class="form-group">
             <label for="settingsUserWebsite">身份证</label>
-            <input type="text" name="name" class="form-control" id="settingsUserWebsite" placeholder="{{ Auth::user()->id_card }}">
+            <input type="text" name="id_card" class="form-control" placeholder="{{ Auth::user()->id_card }}"
+                   value="{{ Auth::user()->id_card }}">
         </div>
         <div class="form-group">
             <label for="settingsUserAbout">反馈</label>
-            <textarea name="" placeholder="您的反馈对我们十分重要" class="form-control" id="settingsUserAbout"></textarea>
+            <textarea name="memo" placeholder="您的反馈对我们十分重要" class="form-control"></textarea>
         </div>
         <div class="form-group">
             <label for="settingsUserAbout">功能设置</label>
@@ -80,7 +76,7 @@
             </div>
         </div>
         <div class="form-group">
-            <a href="#" class="btn btn-secondary">Save</a>
+            <button type="submit" href="#" class="btn btn-secondary btn-user-update-own">保存</button>
         </div>
     </form>
 </div>

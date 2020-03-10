@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InvalidRequestException;
 use App\Models\ExamRoom;
 use App\Models\Paper;
+use App\Models\Score;
+use Illuminate\Http\Request;
 
 class ExamRoomsController extends Controller
 {
 
-    // 考试界面首页
+    // 考试界面首页[默认为网站首页]
     public function index()
     {
         // 当用户进入考场首页的时候, 自动触发考场状态刷新
@@ -18,7 +21,9 @@ class ExamRoomsController extends Controller
         $examRoomWithMe = $this->getExamRoomWithMe();
         $shipExamRooms = $this->getShipExamRoom();
         $nowExamRooms = $this->getNowExamRoom();
-        return view('exam_room.index', compact('newExamRooms', 'shipExamRooms', 'examRoomWithMe', 'nowExamRooms'));
+        $myScore = $this->getMyScore();
+        $endExamRooms = $this->getEndExamRoom();
+        return view('exam_room.index', compact('newExamRooms', 'shipExamRooms', 'examRoomWithMe', 'nowExamRooms', 'myScore', 'endExamRooms'));
     }
 
     // 获取最新考场
@@ -58,11 +63,26 @@ class ExamRoomsController extends Controller
         return $examRoom;
     }
 
+    // 获取我的考试成绩
+    public function getMyScore()
+    {
+        $myScore = auth()->user()->scores()->orderBy('id', 'desc')->get();
+        return $myScore;
+    }
+
     // 考试
-    public function exam(ExamRoom $exam_room, Paper $paper)
+    public function exam(ExamRoom $exam_room, Paper $paper, Request $request)
     {
         // 检查用户是否有考试权限
         $this->authorize('view', $exam_room);
+        if ($exam_room->status === ExamRoom::EXAM_ROOM_STATUS_END)
+            throw new InvalidRequestException('考试已结束');
+
+        // 校验用户是否已经提交试卷了, 如果已经提交试卷, 则直接返回首页
+        if (Score::query()->where('user_id', $request->user()->id)->where('exam_room_id', $exam_room->id)->exists())
+            throw new InvalidRequestException('你已提交试卷');
+
+
         // 刷新考场状态
         ExamRoom::updateStatus();
         return view('exam_room.exam', compact('exam_room', 'paper'));
@@ -76,5 +96,15 @@ class ExamRoomsController extends Controller
 
         // 加载批改界面
         return view('exam_room.correction', compact('exam_room'));
+    }
+
+    // 获取已经结束的考场详细信息
+    public function getEndExamRoom()
+    {
+        $examRoom = ExamRoom::query()
+            ->where('status', ExamRoom::EXAM_ROOM_STATUS_END)
+            ->orderBy('end_at', 'desc')
+            ->paginate(9);
+        return $examRoom;
     }
 }

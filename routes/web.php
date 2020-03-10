@@ -23,6 +23,18 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/exam_room/{exam_room}/paper/{paper}', 'ExamRoomsController@exam')->name('exam_room.exam');
     // 提交试卷
     Route::post('/answer', 'AnswersController@store')->name('answers.store');
+    // 文档界面首页
+    Route::get('/article_dir', 'ArticleDirsController@index')->name('article_dir.index');
+    // 更新自己的用户信息
+    Route::put('users/{user}/own', 'UsersController@updateOwn')->name('users.update.own');
+    // 错题集界面
+    Route::get('score/{score}/error_collection', 'ScoresController@showErrorCollection')->name('score.show.error_collection');
+});
 
+Route::group(['middleware' => ['auth', 'verified', 'pjax']], function () {
+    // 文章界面
+    Route::get('/article_dir/{articleDir}/article/{id?}', 'ArticlesController@show')->name('article.show');
+   // 返回json
+    Route::get('/article_dir/{id}', 'ArticleDirsController@show')->name('article_dir.show');
 });
 

@@ -33,7 +33,7 @@
                     <nav>
                         <ul>
                             <li><a href="{{ route('exam_room.index') }}"><span>考试</span></a></li>
-                            <li><a href="{{ route('admin.login') }}"><span>文档</span></a></li>
+                            <li><a href="{{ route('article_dir.index') }}"><span>文档</span></a></li>
                             <li><a href="page-create-topic.html"><span>视屏</span></a></li>
                             <li>
                                 <a href="page-single-user.html"><span>后台管理</span></a>
@@ -41,6 +41,7 @@
                                     <li><a href="{{ route('admin.login') }}" target="_blank">进入后台</a></li>
                                     <li><a href="{{ route('admin.papers.create') }}" target="_blank">添加试卷</a></li>
                                     <li><a href="{{ route('admin.examrooms.create') }}" target="_blank">添加考场</a></li>
+                                    <li><a href="{{ route('admin.examrooms.index') }}" target="_blank">批改试卷</a></li>
                                     <li><a href="index.html" target="_blank">检测考场</a></li>
                                     <li><a href="index.html" target="_blank">发送消息</a></li>
                                 </ul>

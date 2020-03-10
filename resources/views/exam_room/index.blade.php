@@ -18,14 +18,14 @@
                     <a class="nav-link" data-toggle="tab" href="#tt-tab-04" role="tab"><span>待考考场</span></a>
                 </li>
                 <li class="nav-item tt-hide-md">
-                    <a class="nav-link" data-toggle="tab" href="#tt-tab-05" role="tab"><span>考试排行</span></a>
+                    <a class="nav-link" data-toggle="tab" href="#tt-tab-05" role="tab"><span>我的考试成绩</span></a>
                 </li>
                 <li class="nav-item tt-hide-md">
-                    <a class="nav-link" data-toggle="tab" href="#tt-tab-06" role="tab"><span>结束考场</span></a>
+                    <a class="nav-link" data-toggle="tab" href="#tt-tab-06" role="tab"><span>结束考场成绩</span></a>
                 </li>
             </ul>
         </div>
-        <div class="tab-content">
+        <div class="tab-content" style="min-height: 500px">
             <!-- 与我相关的考场start -->
             <div class="tab-pane tt-indent-none show active" id="tt-tab-01" role="tabpanel">
                 <div class="tt-topic-list">
@@ -282,889 +282,90 @@
                 </div>
             </div>
             <!-- 待考考场end -->
+
             <div class="tab-pane tt-indent-none" id="tt-tab-05" role="tabpanel">
                 <div class="tt-followers-list">
                     <div class="tt-list-header">
-                        <div class="tt-col-name">User</div>
-                        <div class="tt-col-value-large hide-mobile">Follow date</div>
-                        <div class="tt-col-value-large hide-mobile">Last Activity</div>
-                        <div class="tt-col-value-large hide-mobile">Threads</div>
-                        <div class="tt-col-value-large hide-mobile">Replies</div>
-                        <div class="tt-col-value">Level</div>
+                        <div class="tt-col-name">考场名称&试卷名称</div>
+                        <div class="tt-col-value-large hide-mobile">考试开始时间</div>
+                        <div class="tt-col-value-large hide-mobile">考试总时间长</div>
+                        <div class="tt-col-value-large hide-mobile">选择题分数</div>
+                        <div class="tt-col-value-large hide-mobile">简答题分数</div>
+                        <div class="tt-col-value-large hide-mobile">总分</div>
+                        <div class="tt-col-value">状态</div>
                     </div>
+                    @foreach($myScore as $score)
                     <div class="tt-item">
                         <div class="tt-col-merged">
-                            <div class="tt-col-avatar">
-                                <svg class="tt-icon">
-                                    <use xlink:href="#icon-ava-m"></use>
-                                </svg>
-                            </div>
                             <div class="tt-col-description">
-                                <h6 class="tt-title"><a href="#">Mitchell</a></h6>
+                                <h6 class="tt-title"><a href="{{ route('score.show.error_collection', ['score' => $score->id]) }}">{{ $score->examRoom()->get()[0]->name }}</a></h6>
                                 <ul>
-                                    <li><a href="mailto:@mitchell73">@mitchell73</a></li>
+                                    <li><a href="{{ route('score.show.error_collection', ['score' => $score->id]) }}">{{ \App\Models\Paper::find($score->examRoom()->get()[0]->paper_id)->title }}</a></li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="tt-col-value-large hide-mobile">05/01/2019</div>
-                        <div class="tt-col-value-large hide-mobile tt-color-select">1 hours ago</div>
-                        <div class="tt-col-value-large hide-mobile">1</div>
-                        <div class="tt-col-value-large hide-mobile">3</div>
-                        <div class="tt-col-value"><span class="tt-color19 tt-badge">LVL : 33</span></div>
+                        <div class="tt-col-value-large hide-mobile"><a href="{{ route('score.show.error_collection', ['score' => $score->id]) }}">{{ $score->examRoom()->get()[0]->start_at }}</a></div>
+                        <div class="tt-col-value-large hide-mobile tt-color-select"><a href="{{ route('score.show.error_collection', ['score' => $score->id]) }}">{{ $score->examRoom()->get()[0]->examMinute }}</a></div>
+                        <div class="tt-col-value-large hide-mobile"><a href="{{ route('score.show.error_collection', ['score' => $score->id]) }}">{{ $score->questions_mark }}</a></div>
+                        <div class="tt-col-value-large hide-mobile"><a href="{{ route('score.show.error_collection', ['score' => $score->id]) }}">{{ $score->text_mark }}</a></div>
+                        <div class="tt-col-value-large hide-mobile"><a href="{{ route('score.show.error_collection', ['score' => $score->id]) }}">{{ $score->mark }}</a></div>
+                        <div class="tt-col-value"><a href="{{ route('score.show.error_collection', ['score' => $score->id]) }}"><span class="tt-color19 tt-badge">{{ \App\Models\Score::$scoreType[$score->type] }}</span></a></div>
                     </div>
-                    <div class="tt-item">
-                        <div class="tt-col-merged">
-                            <div class="tt-col-avatar">
-                                <svg class="tt-icon">
-                                    <use xlink:href="#icon-ava-v"></use>
-                                </svg>
-                            </div>
-                            <div class="tt-col-description">
-                                <h6 class="tt-title"><a href="#">Vans</a></h6>
-                                <ul>
-                                    <li><a href="mailto:@vans49">@vans49</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-col-value-large hide-mobile">04/01/2019</div>
-                        <div class="tt-col-value-large hide-mobile tt-color-select">23 hours ago</div>
-                        <div class="tt-col-value-large hide-mobile">4</div>
-                        <div class="tt-col-value-large hide-mobile">9</div>
-                        <div class="tt-col-value"><span class="tt-color20 tt-badge">LVL : 99</span></div>
-                    </div>
-                    <div class="tt-item">
-                        <div class="tt-col-merged">
-                            <div class="tt-col-avatar">
-                                <svg class="tt-icon">
-                                    <use xlink:href="#icon-ava-b"></use>
-                                </svg>
-                            </div>
-                            <div class="tt-col-description">
-                                <h6 class="tt-title"><a href="#">Baker</a></h6>
-                                <ul>
-                                    <li><a href="mailto:@baker65">@baker65</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-col-value-large hide-mobile">03/01/2019</div>
-                        <div class="tt-col-value-large hide-mobile tt-color-select">4 hours ago</div>
-                        <div class="tt-col-value-large hide-mobile">28</div>
-                        <div class="tt-col-value-large hide-mobile">86</div>
-                        <div class="tt-col-value"><span class="tt-color07 tt-badge">LVL : 43</span></div>
-                    </div>
-                    <div class="tt-item">
-                        <div class="tt-col-merged">
-                            <div class="tt-col-avatar">
-                                <svg class="tt-icon">
-                                    <use xlink:href="#icon-ava-f"></use>
-                                </svg>
-                            </div>
-                            <div class="tt-col-description">
-                                <h6 class="tt-title"><a href="#">Foster</a></h6>
-                                <ul>
-                                    <li><a href="mailto:@foster87">@foster87</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-col-value-large hide-mobile">03/01/2019</div>
-                        <div class="tt-col-value-large hide-mobile tt-color-select">7 hours ago</div>
-                        <div class="tt-col-value-large hide-mobile">2</div>
-                        <div class="tt-col-value-large hide-mobile">16</div>
-                        <div class="tt-col-value"><span class="tt-color21 tt-badge">LVL : 62</span></div>
-                    </div>
-                    <div class="tt-item">
-                        <div class="tt-col-merged">
-                            <div class="tt-col-avatar">
-                                <svg class="tt-icon">
-                                    <use xlink:href="#icon-ava-t"></use>
-                                </svg>
-                            </div>
-                            <div class="tt-col-description">
-                                <h6 class="tt-title"><a href="#">Taylor</a></h6>
-                                <ul>
-                                    <li><a href="mailto:@tails23">@tails23</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-col-value-large hide-mobile">10/01/2019</div>
-                        <div class="tt-col-value-large hide-mobile tt-color-select">10 hours ago</div>
-                        <div class="tt-col-value-large hide-mobile">0</div>
-                        <div class="tt-col-value-large hide-mobile">6</div>
-                        <div class="tt-col-value"><span class="tt-color16 tt-badge">LVL : 02</span></div>
-                    </div>
-                    <div class="tt-item">
-                        <div class="tt-col-merged">
-                            <div class="tt-col-avatar">
-                                <svg class="tt-icon">
-                                    <use xlink:href="#icon-ava-k"></use>
-                                </svg>
-                            </div>
-                            <div class="tt-col-description">
-                                <h6 class="tt-title"><a href="#">Kevin</a></h6>
-                                <ul>
-                                    <li><a href="mailto:@kevin27">@kevin27</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-col-value-large hide-mobile">08/01/2019</div>
-                        <div class="tt-col-value-large hide-mobile tt-color-select">4 days ago</div>
-                        <div class="tt-col-value-large hide-mobile">0</div>
-                        <div class="tt-col-value-large hide-mobile">2</div>
-                        <div class="tt-col-value"><span class="tt-color17 tt-badge">LVL : 26</span></div>
-                    </div>
-                    <div class="tt-item">
-                        <div class="tt-col-merged">
-                            <div class="tt-col-avatar">
-                                <svg class="tt-icon">
-                                    <use xlink:href="#icon-ava-g"></use>
-                                </svg>
-                            </div>
-                            <div class="tt-col-description">
-                                <h6 class="tt-title"><a href="#">Green</a></h6>
-                                <ul>
-                                    <li><a href="mailto:@green63">@green63</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-col-value-large hide-mobile">09/01/2019</div>
-                        <div class="tt-col-value-large hide-mobile tt-color-select">1 hours ago</div>
-                        <div class="tt-col-value-large hide-mobile">9</div>
-                        <div class="tt-col-value-large hide-mobile">32</div>
-                        <div class="tt-col-value"><span class="tt-color16 tt-badge">LVL : 06</span></div>
-                    </div>
-                    <div class="tt-item">
-                        <div class="tt-col-merged">
-                            <div class="tt-col-avatar">
-                                <svg class="tt-icon">
-                                    <use xlink:href="#icon-ava-d"></use>
-                                </svg>
-                            </div>
-                            <div class="tt-col-description">
-                                <h6 class="tt-title"><a href="#">Dylan</a></h6>
-                                <ul>
-                                    <li><a href="mailto:@dylan89">@dylan89</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-col-value-large hide-mobile">09/01/2019</div>
-                        <div class="tt-col-value-large hide-mobile tt-color-select">18 hours ago</div>
-                        <div class="tt-col-value-large hide-mobile">2</div>
-                        <div class="tt-col-value-large hide-mobile">3</div>
-                        <div class="tt-col-value"><span class="tt-color17 tt-badge">LVL : 27</span></div>
-                    </div>
-                    <div class="tt-item">
-                        <div class="tt-col-merged">
-                            <div class="tt-col-avatar">
-                                <svg class="tt-icon">
-                                    <use xlink:href="#icon-ava-p"></use>
-                                </svg>
-                            </div>
-                            <div class="tt-col-description">
-                                <h6 class="tt-title"><a href="#">Peterson</a></h6>
-                                <ul>
-                                    <li><a href="mailto:@dylan89">@dylan89</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-col-value-large hide-mobile">09/01/2019</div>
-                        <div class="tt-col-value-large hide-mobile tt-color-select">3 days ago</div>
-                        <div class="tt-col-value-large hide-mobile">8</div>
-                        <div class="tt-col-value-large hide-mobile">21</div>
-                        <div class="tt-col-value"><span class="tt-color18 tt-badge">LVL : 13</span></div>
-                    </div>
-                    <div class="tt-item">
-                        <div class="tt-col-merged">
-                            <div class="tt-col-avatar">
-                                <svg class="tt-icon">
-                                    <use xlink:href="#icon-ava-a"></use>
-                                </svg>
-                            </div>
-                            <div class="tt-col-description">
-                                <h6 class="tt-title"><a href="#">azyrus</a></h6>
-                                <ul>
-                                    <li><a href="mailto:@azyrus21">@azyrus21</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-col-value-large hide-mobile">08/01/2019</div>
-                        <div class="tt-col-value-large hide-mobile tt-color-select">2 days ago</div>
-                        <div class="tt-col-value-large hide-mobile">19</div>
-                        <div class="tt-col-value-large hide-mobile">32</div>
-                        <div class="tt-col-value"><span class="tt-color18 tt-badge">LVL : 18</span></div>
-                    </div>
-                    <div class="tt-item">
-                        <div class="tt-col-merged">
-                            <div class="tt-col-avatar">
-                                <svg class="tt-icon">
-                                    <use xlink:href="#icon-ava-s"></use>
-                                </svg>
-                            </div>
-                            <div class="tt-col-description">
-                                <h6 class="tt-title"><a href="#">Smith</a></h6>
-                                <ul>
-                                    <li><a href="mailto:@smith45">@smith45</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-col-value-large hide-mobile">08/01/2019</div>
-                        <div class="tt-col-value-large hide-mobile tt-color-select">1 hours ago</div>
-                        <div class="tt-col-value-large hide-mobile">6</div>
-                        <div class="tt-col-value-large hide-mobile">13</div>
-                        <div class="tt-col-value"><span class="tt-color07 tt-badge">LVL : 42</span></div>
-                    </div>
-                    <div class="tt-item">
-                        <div class="tt-col-merged">
-                            <div class="tt-col-avatar">
-                                <svg class="tt-icon">
-                                    <use xlink:href="#icon-ava-u"></use>
-                                </svg>
-                            </div>
-                            <div class="tt-col-description">
-                                <h6 class="tt-title"><a href="#">Usain</a></h6>
-                                <ul>
-                                    <li><a href="mailto:@bolt24">@bolt24</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-col-value-large hide-mobile">07/01/2019</div>
-                        <div class="tt-col-value-large hide-mobile tt-color-select">9 hours ago</div>
-                        <div class="tt-col-value-large hide-mobile">20</div>
-                        <div class="tt-col-value-large hide-mobile">43</div>
-                        <div class="tt-col-value"><span class="tt-color17 tt-badge">LVL : 21</span></div>
-                    </div>
-                    <div class="tt-item">
-                        <div class="tt-col-merged">
-                            <div class="tt-col-avatar">
-                                <svg class="tt-icon">
-                                    <use xlink:href="#icon-ava-l"></use>
-                                </svg>
-                            </div>
-                            <div class="tt-col-description">
-                                <h6 class="tt-title"><a href="#">Larry</a></h6>
-                                <ul>
-                                    <li><a href="mailto:@larry74">@larry74</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-col-value-large hide-mobile">06/01/2019</div>
-                        <div class="tt-col-value-large hide-mobile tt-color-select">6 hours ago</div>
-                        <div class="tt-col-value-large hide-mobile">2</div>
-                        <div class="tt-col-value-large hide-mobile">5</div>
-                        <div class="tt-col-value"><span class="tt-color19 tt-badge">LVL : 39</span></div>
-                    </div>
-                    <div class="tt-item">
-                        <div class="tt-col-merged">
-                            <div class="tt-col-avatar">
-                                <svg class="tt-icon">
-                                    <use xlink:href="#icon-ava-j"></use>
-                                </svg>
-                            </div>
-                            <div class="tt-col-description">
-                                <h6 class="tt-title"><a href="#">Jordan</a></h6>
-                                <ul>
-                                    <li><a href="mailto:@jordan36">@jordan36</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-col-value-large hide-mobile">05/01/2019</div>
-                        <div class="tt-col-value-large hide-mobile tt-color-select">6 hours ago</div>
-                        <div class="tt-col-value-large hide-mobile">6</div>
-                        <div class="tt-col-value-large hide-mobile">23</div>
-                        <div class="tt-col-value"><span class="tt-color07 tt-badge">LVL : 46</span></div>
-                    </div>
-                    <div class="tt-item">
-                        <div class="tt-col-merged">
-                            <div class="tt-col-avatar">
-                                <svg class="tt-icon">
-                                    <use xlink:href="#icon-ava-c"></use>
-                                </svg>
-                            </div>
-                            <div class="tt-col-description">
-                                <h6 class="tt-title"><a href="#">Clive</a></h6>
-                                <ul>
-                                    <li><a href="mailto:@clive45">@clive45</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="tt-col-value-large hide-mobile">05/01/2019</div>
-                        <div class="tt-col-value-large hide-mobile tt-color-select">8 hours ago</div>
-                        <div class="tt-col-value-large hide-mobile">2</div>
-                        <div class="tt-col-value-large hide-mobile">8</div>
-                        <div class="tt-col-value"><span class="tt-color18 tt-badge">LVL : 16</span></div>
-                    </div>
-
+                    @endforeach
                 </div>
             </div>
+
             <div class="tab-pane" id="tt-tab-06" role="tabpanel">
                 <div class="tt-wrapper-inner">
                     <div class="tt-categories-list">
                         <div class="row">
+                            @foreach($endExamRooms as $examRoom)
                             <div class="col-md-6 col-lg-4">
                                 <div class="tt-item">
                                     <div class="tt-item-header">
                                         <ul class="tt-list-badge">
-                                            <li><a href="#"><span class="tt-color01 tt-badge">politics</span></a>
+                                            <li><a href="#"><span class="tt-color01 tt-badge">{{ $examRoom->name }}</span></a>
                                             </li>
                                         </ul>
-                                        <h6 class="tt-title"><a href="#">Threads - 1,245</a></h6>
+                                        <h6 class="tt-title"><a href="#">{{ \Illuminate\Support\Carbon::parse($examRoom->start_at)->format('m-d H:i') }}</a></h6>
                                     </div>
                                     <div class="tt-item-layout">
                                         <div class="innerwrapper">
-                                            Lets discuss about whats happening around the world politics.
+                                            试卷名称: {{ $examRoom->paper()->first()->title }}<br>详情: {{ $examRoom->paper()->first()->description }}
                                         </div>
                                         <div class="innerwrapper">
-                                            <h6 class="tt-title">Similar TAGS</h6>
+                                            <h6 class="tt-title">试卷标签</h6>
                                             <ul class="tt-list-badge">
-                                                <li><a href="#"><span class="tt-badge">world politics</span></a>
+                                                <li><a href="#"><span class="tt-badge">总分:
+                                                            @php ($summaryScore = 0)
+                                                            @foreach($examRoom->paper()->first()->questions as $question)
+                                                                @if($question->question_status === \App\Models\Question::SINGLE_TEXT)
+                                                                    @php($summaryScore = \App\Models\Option::get('single_text_mark') + $summaryScore)
+                                                                @elseif($question->question_status === \App\Models\Question::MULTIPLE_TEXT)
+                                                                    @php($summaryScore = \App\Models\Option::get('multiple_text_mark') + $summaryScore)
+                                                                @elseif($question->question_status === \App\Models\Question::MULTIPLE_CHOICE_QUESTIONS)
+                                                                    @php($summaryScore = \App\Models\Option::get('multiple_choice_question_mark') + $summaryScore)
+                                                                @else
+                                                                    @php($summaryScore = \App\Models\Option::get('single_choice_question_mark') + $summaryScore)
+                                                                @endif
+                                                            @endforeach
+                                                            {{ $summaryScore }}</span></a>
                                                 </li>
-                                                <li><a href="#"><span class="tt-badge">human rights</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">trump</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">climate change</span></a>
+                                                <li><a href="#"><span class="tt-badge">考试总时长: {{ $examRoom->exam_minute }}</span></a></li>
+                                                <li><a href="#"><span class="tt-badge">题目总数: {{ $examRoom->paper()->first()->total }}</span></a></li>
+                                                <li><a href="#"><span class="tt-badge">试卷批改人: {{ $examRoom->user()->first()->username }}</span></a>
                                                 </li>
-                                                <li><a href="#"><span class="tt-badge">foreign policy</span></a>
+                                                <li><a href="#"><span class="tt-badge">试卷类型: {{ \App\Models\Paper::$paperType[$examRoom->paper()->first()->type] }}</span></a>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <a href="#" class="tt-btn-icon">
-                                            <i class="tt-icon">
-                                                <svg>
-                                                    <use xlink:href="#icon-favorite"></use>
-                                                </svg>
-                                            </i>
-                                        </a>
                                     </div>
+                                    <a href="#" class="btn btn-color02 btn-block btn-xs" style="width: 110px; margin-top: 10px"><span class="icon iconfont icon-icon-test18"></span> 下载成绩</a>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="tt-item">
-                                    <div class="tt-item-header">
-                                        <ul class="tt-list-badge">
-                                            <li><a href="#"><span class="tt-color02 tt-badge">video</span></a></li>
-                                        </ul>
-                                        <h6 class="tt-title"><a href="#">Threads - 368</a></h6>
-                                    </div>
-                                    <div class="tt-item-layout">
-                                        <div class="tt-innerwrapper">
-                                            Lets discuss about whats happening around the world politics.
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <h6 class="tt-title">Similar TAGS</h6>
-                                            <ul class="tt-list-badge">
-                                                <li><a href="#"><span class="tt-badge">movies</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">new movies</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">marvel movies</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">climate change</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">netflix</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">prime</span></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <a href="#" class="tt-btn-icon">
-                                                <i class="tt-icon">
-                                                    <svg>
-                                                        <use xlink:href="#icon-favorite"></use>
-                                                    </svg>
-                                                </i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="tt-item">
-                                    <div class="tt-item-header">
-                                        <ul class="tt-list-badge">
-                                            <li><a href="#"><span class="tt-color03 tt-badge">exchange</span></a>
-                                            </li>
-                                        </ul>
-                                        <h6 class="tt-title"><a href="#">Threads - 381</a></h6>
-                                    </div>
-                                    <div class="tt-item-layout">
-                                        <div class="tt-innerwrapper">
-                                            Lets discuss about whats happening around the world politics.
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <h6 class="tt-title">Similar TAGS</h6>
-                                            <ul class="tt-list-badge">
-                                                <li><a href="#"><span class="tt-badge">world politics</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">human rights</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">trump</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">climate change</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">foreign policy</span></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <a href="#" class="tt-btn-icon">
-                                                <i class="tt-icon">
-                                                    <svg>
-                                                        <use xlink:href="#icon-favorite"></use>
-                                                    </svg>
-                                                </i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="tt-item">
-                                    <div class="tt-item-header">
-                                        <ul class="tt-list-badge">
-                                            <li><a href="#"><span class="tt-color04 tt-badge">pets</span></a></li>
-                                        </ul>
-                                        <h6 class="tt-title"><a href="#">Threads - 98</a></h6>
-                                    </div>
-                                    <div class="tt-item-layout">
-                                        <div class="tt-innerwrapper">
-                                            Lets discuss about whats happening around the world politics.
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <h6 class="tt-title">Similar TAGS</h6>
-                                            <ul class="tt-list-badge">
-                                                <li><a href="#"><span class="tt-badge">world politics</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">human rights</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">trump</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">climate change</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">foreign policy</span></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <a href="#" class="tt-btn-icon">
-                                                <i class="tt-icon">
-                                                    <svg>
-                                                        <use xlink:href="#icon-favorite"></use>
-                                                    </svg>
-                                                </i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="tt-item">
-                                    <div class="tt-item-header">
-                                        <ul class="tt-list-badge">
-                                            <li><a href="#"><span class="tt-color05 tt-badge">music</span></a></li>
-                                        </ul>
-                                        <h6 class="tt-title"><a href="#">Threads - 28</a></h6>
-                                    </div>
-                                    <div class="tt-item-layout">
-                                        <div class="tt-innerwrapper">
-                                            Lets discuss about whats happening around the world politics.
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <h6 class="tt-title">Similar TAGS</h6>
-                                            <ul class="tt-list-badge">
-                                                <li><a href="#"><span class="tt-badge">world politics</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">human rights</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">trump</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">climate change</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">foreign policy</span></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <a href="#" class="tt-btn-icon">
-                                                <i class="tt-icon">
-                                                    <svg>
-                                                        <use xlink:href="#icon-favorite"></use>
-                                                    </svg>
-                                                </i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="tt-item">
-                                    <div class="tt-item-header">
-                                        <ul class="tt-list-badge">
-                                            <li><a href="#"><span class="tt-color06 tt-badge">movies</span></a></li>
-                                        </ul>
-                                        <h6 class="tt-title"><a href="#">Threads - 74</a></h6>
-                                    </div>
-                                    <div class="tt-item-layout">
-                                        <div class="tt-innerwrapper">
-                                            Lets discuss about whats happening around the world politics.
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <h6 class="tt-title">Similar TAGS</h6>
-                                            <ul class="tt-list-badge">
-                                                <li><a href="#"><span class="tt-badge">world politics</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">human rights</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">trump</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">climate change</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">foreign policy</span></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <a href="#" class="tt-btn-icon">
-                                                <i class="tt-icon">
-                                                    <svg>
-                                                        <use xlink:href="#icon-favorite"></use>
-                                                    </svg>
-                                                </i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="tt-item">
-                                    <div class="tt-item-header">
-                                        <ul class="tt-list-badge">
-                                            <li><a href="#"><span class="tt-color15 tt-badge">nature</span></a></li>
-                                        </ul>
-                                        <h6 class="tt-title"><a href="#">Threads - 1,245</a></h6>
-                                    </div>
-                                    <div class="tt-item-layout">
-                                        <div class="tt-innerwrapper">
-                                            Lets discuss about whats happening around the world politics.
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <h6 class="tt-title">Similar TAGS</h6>
-                                            <ul class="tt-list-badge">
-                                                <li><a href="#"><span class="tt-badge">world politics</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">human rights</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">trump</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">climate change</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">foreign policy</span></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <a href="#" class="tt-btn-icon">
-                                                <i class="tt-icon">
-                                                    <svg>
-                                                        <use xlink:href="#icon-favorite"></use>
-                                                    </svg>
-                                                </i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="tt-item">
-                                    <div class="tt-item-header">
-                                        <ul class="tt-list-badge">
-                                            <li><a href="#"><span class="tt-color07 tt-badge">video games</span></a>
-                                            </li>
-                                        </ul>
-                                        <h6 class="tt-title"><a href="#">Threads - 1,245</a></h6>
-                                    </div>
-                                    <div class="tt-item-layout">
-                                        <div class="tt-innerwrapper">
-                                            Lets discuss about whats happening around the world politics.
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <h6 class="tt-title">Similar TAGS</h6>
-                                            <ul class="tt-list-badge">
-                                                <li><a href="#"><span class="tt-badge">world politics</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">human rights</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">trump</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">climate change</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">foreign policy</span></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <a href="#" class="tt-btn-icon">
-                                                <i class="tt-icon">
-                                                    <svg>
-                                                        <use xlink:href="#icon-favorite"></use>
-                                                    </svg>
-                                                </i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="tt-item">
-                                    <div class="tt-item-header">
-                                        <ul class="tt-list-badge">
-                                            <li><a href="#"><span class="tt-color08 tt-badge">youtube</span></a>
-                                            </li>
-                                        </ul>
-                                        <h6 class="tt-title"><a href="#">Threads - 1,245</a></h6>
-                                    </div>
-                                    <div class="tt-item-layout">
-                                        <div class="tt-innerwrapper">
-                                            Lets discuss about whats happening around the world politics.
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <h6 class="tt-title">Similar TAGS</h6>
-                                            <ul class="tt-list-badge">
-                                                <li><a href="#"><span class="tt-badge">world politics</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">human rights</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">trump</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">climate change</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">foreign policy</span></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <a href="#" class="tt-btn-icon">
-                                                <i class="tt-icon">
-                                                    <svg>
-                                                        <use xlink:href="#icon-favorite"></use>
-                                                    </svg>
-                                                </i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="tt-item">
-                                    <div class="tt-item-header">
-                                        <ul class="tt-list-badge">
-                                            <li><a href="#"><span class="tt-color09 tt-badge">social</span></a></li>
-                                        </ul>
-                                        <h6 class="tt-title"><a href="#">Threads - 1,245</a></h6>
-                                    </div>
-                                    <div class="tt-item-layout">
-                                        <div class="tt-innerwrapper">
-                                            Lets discuss about whats happening around the world politics.
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <h6 class="tt-title">Similar TAGS</h6>
-                                            <ul class="tt-list-badge">
-                                                <li><a href="#"><span class="tt-badge">world politics</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">human rights</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">trump</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">climate change</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">foreign policy</span></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <a href="#" class="tt-btn-icon">
-                                                <i class="tt-icon">
-                                                    <svg>
-                                                        <use xlink:href="#icon-favorite"></use>
-                                                    </svg>
-                                                </i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="tt-item">
-                                    <div class="tt-item-header">
-                                        <ul class="tt-list-badge">
-                                            <li><a href="#"><span class="tt-color10 tt-badge">science</span></a>
-                                            </li>
-                                        </ul>
-                                        <h6 class="tt-title"><a href="#">Threads - 1,245</a></h6>
-                                    </div>
-                                    <div class="tt-item-layout">
-                                        <div class="tt-innerwrapper">
-                                            Lets discuss about whats happening around the world politics.
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <h6 class="tt-title">Similar TAGS</h6>
-                                            <ul class="tt-list-badge">
-                                                <li><a href="#"><span class="tt-badge">world politics</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">human rights</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">trump</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">climate change</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">foreign policy</span></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <a href="#" class="tt-btn-icon">
-                                                <i class="tt-icon">
-                                                    <svg>
-                                                        <use xlink:href="#icon-favorite"></use>
-                                                    </svg>
-                                                </i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="tt-item">
-                                    <div class="tt-item-header">
-                                        <ul class="tt-list-badge">
-                                            <li><a href="#"><span
-                                                        class="tt-color11 tt-badge">entertainment</span></a></li>
-                                        </ul>
-                                        <h6 class="tt-title"><a href="#">Threads - 1,245</a></h6>
-                                    </div>
-                                    <div class="tt-item-layout">
-                                        <div class="tt-innerwrapper">
-                                            Lets discuss about whats happening around the world politics.
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <h6 class="tt-title">Similar TAGS</h6>
-                                            <ul class="tt-list-badge">
-                                                <li><a href="#"><span class="tt-badge">world politics</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">human rights</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">trump</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">climate change</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">foreign policy</span></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <a href="#" class="tt-btn-icon">
-                                                <i class="tt-icon">
-                                                    <svg>
-                                                        <use xlink:href="#icon-favorite"></use>
-                                                    </svg>
-                                                </i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="tt-item">
-                                    <div class="tt-item-header">
-                                        <ul class="tt-list-badge">
-                                            <li><a href="#"><span class="tt-color04 tt-badge">pets</span></a></li>
-                                        </ul>
-                                        <h6 class="tt-title"><a href="#">Threads - 1,245</a></h6>
-                                    </div>
-                                    <div class="tt-item-layout">
-                                        <div class="tt-innerwrapper">
-                                            Lets discuss about whats happening around the world politics.
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <h6 class="tt-title">Similar TAGS</h6>
-                                            <ul class="tt-list-badge">
-                                                <li><a href="#"><span class="tt-badge">world politics</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">human rights</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">trump</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">climate change</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">foreign policy</span></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <a href="#" class="tt-btn-icon">
-                                                <i class="tt-icon">
-                                                    <svg>
-                                                        <use xlink:href="#icon-favorite"></use>
-                                                    </svg>
-                                                </i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="tt-item">
-                                    <div class="tt-item-header">
-                                        <ul class="tt-list-badge">
-                                            <li><a href="#"><span class="tt-color05 tt-badge">music</span></a></li>
-                                        </ul>
-                                        <h6 class="tt-title"><a href="#">Threads - 1,245</a></h6>
-                                    </div>
-                                    <div class="tt-item-layout">
-                                        <div class="tt-innerwrapper">
-                                            Lets discuss about whats happening around the world politics.
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <h6 class="tt-title">Similar TAGS</h6>
-                                            <ul class="tt-list-badge">
-                                                <li><a href="#"><span class="tt-badge">world politics</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">human rights</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">trump</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">climate change</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">foreign policy</span></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <a href="#" class="tt-btn-icon">
-                                                <i class="tt-icon">
-                                                    <svg>
-                                                        <use xlink:href="#icon-favorite"></use>
-                                                    </svg>
-                                                </i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="tt-item">
-                                    <div class="tt-item-header">
-                                        <ul class="tt-list-badge">
-                                            <li><a href="#"><span class="tt-color06 tt-badge">movies</span></a></li>
-                                        </ul>
-                                        <h6 class="tt-title"><a href="#">Threads - 1,245</a></h6>
-                                    </div>
-                                    <div class="tt-item-layout">
-                                        <div class="tt-innerwrapper">
-                                            Lets discuss about whats happening around the world politics.
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <h6 class="tt-title">Similar TAGS</h6>
-                                            <ul class="tt-list-badge">
-                                                <li><a href="#"><span class="tt-badge">world politics</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">human rights</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">trump</span></a></li>
-                                                <li><a href="#"><span class="tt-badge">climate change</span></a>
-                                                </li>
-                                                <li><a href="#"><span class="tt-badge">foreign policy</span></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="tt-innerwrapper">
-                                            <a href="#" class="tt-btn-icon">
-                                                <i class="tt-icon">
-                                                    <svg>
-                                                        <use xlink:href="#icon-favorite"></use>
-                                                    </svg>
-                                                </i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="tt-row-btn">
-                                    <button type="button" class="btn-icon js-topiclist-showmore">
-                                        <svg class="tt-icon">
-                                            <use xlink:href="#icon-load_lore_icon"></use>
-                                        </svg>
-                                    </button>
-                                </div>
+                            @endforeach
+                            <div class="tt-row-btn">
+                                {{ $endExamRooms->links() }}
                             </div>
                         </div>
                     </div>

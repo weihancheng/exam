@@ -22,6 +22,7 @@
 <main id="tt-pageContent" class="tt-offset-small {{ route_class() }}-page">
     @include('layouts._user_bar')
     <div class="container">
+        @include('layouts._validate')
         @yield('content')
     </div>
 </main>
@@ -32,11 +33,15 @@
 <script src="{{ mix('js/app.js') }}"></script>
 <script !src="">
     $(function () {
-        // 用户头像背景颜色
         let username = '{{ auth()->user()->username }}';
-        let color = text2Img(username);
-        $('.user-avatar').css('background-color', color);
+        getBackgroundColorByName(username)
+
     });
+
+    function getBackgroundColorByName(name) {
+        // 用户头像背景颜色
+        $('.user-avatar').css('background-color', text2Img(name));
+    }
     // 文本转颜色
     function text2Img(text) {
         var str = "";
@@ -45,11 +50,7 @@
         }
         return '#' + str.slice(1, 4);
     };
-    $(function () {
-        $('.logout').click(function () {
-            alert('11')
-        });
-    })
+
 </script>
 @yield('scriptsAfterJs')
 </body>

@@ -14,14 +14,16 @@ class ExamEnd
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    protected $exam_room;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($exam_room)
     {
-        //
+        $this->exam_room = $exam_room;
     }
 
     /**
@@ -32,5 +34,10 @@ class ExamEnd
     public function broadcastOn()
     {
         return new PrivateChannel('channel-name');
+    }
+
+    public function getExamRoom()
+    {
+        return $this->exam_room;
     }
 }

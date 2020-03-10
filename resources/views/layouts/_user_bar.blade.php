@@ -19,9 +19,7 @@
             <div class="tt-col-btn" id="js-settings-btn">
                 <div class="tt-list-btn">
                     <a href="#" class="tt-btn-icon">
-                        <svg class="tt-icon">
-                            <use xlink:href="#icon-settings_fill"></use>
-                        </svg>
+				        <span class="icon iconfont icon-icon-test16"></span>
                     </a>
                     <a href="#" class="btn btn-primary">信息通知</a>
                     <a href="#" class="btn btn-secondary">设置</a>

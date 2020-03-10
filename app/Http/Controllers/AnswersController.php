@@ -10,7 +10,7 @@ use App\Models\Paper;
 use App\Models\Question;
 use App\Models\Score;
 use App\Models\Option;
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 
 class AnswersController extends Controller
 {
@@ -28,13 +28,11 @@ class AnswersController extends Controller
             throw new InvalidRequestException('你已提交试卷');
 
         // 创建用户试卷评分卡
-        $score = new Score([
-            'type' => Score::SCORE_SHIP
-        ]);
+        $score = new Score([ 'type' => Score::SCORE_SHIP ]);
 
         // 判断是否超出了考试结束时间&判断是否早于考试开始时间
         $test_timout_delay_time = Carbon::now()->timestamp + intval(Option::get('test_timeout_delay_time'));
-        if ($test_timout_delay_time > $examRoom->end_at) {
+        if ($test_timout_delay_time > Carbon::parse($examRoom->end_at)->timestamp) {
             $score->type == Score::SCORE_OVERTIME;    // 标记当前用户考试超时
             $examRoom->stuatus == ExamRoom::EXAM_ROOM_STATUS_END;  //考试结束
             $examRoom->save();
@@ -100,7 +98,7 @@ class AnswersController extends Controller
             if ($question->question_status === Question::MULTIPLE_CHOICE_QUESTIONS) {
                 $answer['value'] = array_unique($answer['value']);
                 $bool = true;
-                if (count($answer) == count($question->answer)) {
+                if (count($answer['value']) == count($question->answer)) {
                     foreach ($question->answer as $true_answer) {
                         if (!in_array($true_answer, $answer['value'])) {
                             $bool = false;
